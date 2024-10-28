@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+<!--        de comment 1 dong chi can an crt /-->
+		<add id="Thao::top_level" title="Thao" module="Thao_Blog" sortOrder="9999" resource="Magento_Backend::content"/>
+<!--		<add id="Thao_Blog::thao_blog_post" title="post" module="Thao_Blog" sortOrder="10" resource="Magento_Backend::content"  parent="Magento_Backend::content"  action="blog/post/index"/>-->
+		<add id="Thao_Blog::thao_blog_post" title="post" module="Thao_Blog" sortOrder="10" resource="Magento_Backend::content"  parent="Thao::top_level"  action="blog/post/index"/>
+	</menu>
+</config>
+

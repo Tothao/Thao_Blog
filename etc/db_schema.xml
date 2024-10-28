@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="thao_blog_post" resource="default" engine="innodb" comment="thao_blog_post Table">
+		<column xsi:type="int" name="post_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="post_id"/>
+		</constraint>
+		<column name="title" nullable="true" xsi:type="varchar" comment="title" length="255"/>
+		<column name="image" nullable="true" xsi:type="varchar" comment="image" length="255"/>
+		<column name="url_key" nullable="true" xsi:type="varchar" comment="url_key" length="255"/>
+		<column name="author" nullable="true" xsi:type="varchar" comment="author" length="255"/>
+		<column name="store_id" nullable="true" xsi:type="varchar" comment="store_id" length="255"/>
+		<column name="created_at" nullable="true" xsi:type="datetime" comment="created_at" default="CURRENT_TIMESTAMP"/>
+		<column name="updated_at" nullable="true" xsi:type="datetime" comment="updated_at" default="CURRENT_TIMESTAMP"/>
+	</table>
+</schema>
