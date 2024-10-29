@@ -55,36 +55,67 @@
 				</validation>
 			</settings>
 		</field>
-		<field name="image" formElement="input" sortOrder="20">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">post</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">image</label>
-				<dataScope>image</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
-				</validation>
-			</settings>
-		</field>
-		<field name="url_key" formElement="input" sortOrder="30">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">post</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">url_key</label>
-				<dataScope>url_key</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
-				</validation>
-			</settings>
-		</field>
+<!--		<field name="image" formElement="input" sortOrder="20">-->
+<!--			<argument name="data" xsi:type="array">-->
+<!--				<item name="config" xsi:type="array">-->
+<!--					<item name="source" xsi:type="string">post</item>-->
+<!--				</item>-->
+<!--			</argument>-->
+<!--			<settings>-->
+<!--				<dataType>text</dataType>-->
+<!--				<label translate="true">image</label>-->
+<!--				<dataScope>image</dataScope>-->
+<!--				<validation>-->
+<!--					<rule name="required-entry" xsi:type="boolean">false</rule>-->
+<!--				</validation>-->
+<!--			</settings>-->
+<!--		</field>-->
+        <field formElement="imageUploader" name="image" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">image</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Logo</label>
+                <dataType>text</dataType>
+                <dataScope>image</dataScope>
+                <elementTmpl>ui/form/element/uploader/image</elementTmpl>
+                <visible>true</visible>
+                <required>false</required>
+            </settings>
+            <formElements>
+                <imageUploader>
+                    <settings>
+                        <required>false</required>
+                        <uploaderConfig>
+                            <param xsi:type="url" name="url" path="blog/post/filesubmission"/>
+                        </uploaderConfig>
+                        <previewTmpl>Thao_Blog/image-preview</previewTmpl>
+                        <openDialogTitle>Media Gallery</openDialogTitle>
+                        <initialMediaGalleryOpenSubpath>logo</initialMediaGalleryOpenSubpath>
+                        <allowedExtensions>jpg jpeg gif png</allowedExtensions>
+                        <maxFileSize>4194304</maxFileSize>
+                    </settings>
+                </imageUploader>
+            </formElements>
+        </field>
+        <field name="url_key" formElement="input" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">post</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Url_key</label>
+                <dataScope>Url_key</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+
 		<field name="author" formElement="input" sortOrder="40">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">

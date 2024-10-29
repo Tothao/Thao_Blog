@@ -38,20 +38,22 @@ class Save extends \Magento\Backend\App\Action
         $data = $this->getRequest()->getPostValue();
         if ($data) {
             $id = $this->getRequest()->getParam('post_id');
-        
+
             $model = $this->_objectManager->create(\Thao\Blog\Model\Post::class)->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Post no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
-        
+            if (isset($data['image']) && is_array($data['image'])) {
+                $data['image'] = $data['image'][0]['name'];
+            }
             $model->setData($data);
-        
+
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Post.'));
                 $this->dataPersistor->clear('thao_blog_post');
-        
+
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['post_id' => $model->getId()]);
                 }
@@ -61,7 +63,7 @@ class Save extends \Magento\Backend\App\Action
             } catch (\Exception $e) {
                 $this->messageManager->addExceptionMessage($e, __('Something went wrong while saving the Post.'));
             }
-        
+
             $this->dataPersistor->set('thao_blog_post', $data);
             return $resultRedirect->setPath('*/*/edit', ['post_id' => $this->getRequest()->getParam('post_id')]);
         }

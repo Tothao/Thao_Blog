@@ -3,7 +3,8 @@
 	<update handle="styles"/>
 	<body>
 		<referenceContainer name="content">
-			<uiComponent name="thao_blog_post_form"/>
+<uiComponent name="thao_blog_post_form"/>
+<!--            <uiComponent name="thao_blog_post_listing"/>-->
 		</referenceContainer>
 	</body>
 </page>
