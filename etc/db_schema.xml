@@ -6,6 +6,7 @@
 			<column name="post_id"/>
 		</constraint>
 		<column name="title" nullable="true" xsi:type="varchar" comment="title" length="255"/>
+		<column name="is_active" nullable="false" xsi:type="smallint" default="1" comment="status" />
 		<column name="image" nullable="true" xsi:type="varchar" comment="image" length="255"/>
 		<column name="url_key" nullable="true" xsi:type="varchar" comment="url_key" length="255"/>
 		<column name="author" nullable="true" xsi:type="varchar" comment="author" length="255"/>

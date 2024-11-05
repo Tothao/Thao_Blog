@@ -18,7 +18,7 @@
 	</type>
 
 
-    di.xml <!-- Image Uploader -->
+    <!-- Image Uploader -->
     <type name="Thao\Blog\Controller\Adminhtml\Post\Filesubmission">
         <arguments>
             <argument name="uploader" xsi:type="object">ExtendfeatureImageUploader</argument>
