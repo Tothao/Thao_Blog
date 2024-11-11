@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout.xsd">
+    <body>
+        <!-- Thêm block hiển thị bài viết -->
+        <referenceContainer name="content">
+            <block
+                class="Thao\Blog\Block\View"
+                name="blog.posts"/>
+<!--            tuong ung voi cai layout nay. trong layout thi se tao 1 cai block, block nay thi ko dung template.-->
+
+        </referenceContainer>
+    </body>
+</layout>
+

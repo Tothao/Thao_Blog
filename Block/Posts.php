@@ -33,9 +33,14 @@ class Posts extends Template
 //        nhung trong magento thi thuong se ko lam the. ma se khai bao vao contruct va gan vao mot thuoc tinh luon
 //    gio de lay tat da cac bai viet thi se viet ntn
         $postCollectionFactory = $this->postCollectionFactory->create();
+//        ->addFieldToFilter('is_active', 1);
+//        cai nay bay gio them dieu kien chi lay bai biet duoc bat cai is_active nhe
+//        dung cai addFieldToFilter de loc danh sach
+//        ok roi
+//        luc nao lam xong m mo rong loc them cai dieu kien store_id nua
         $posts = $postCollectionFactory->getItems();
         return $posts;
-//    do xong r
+//
     }
 }
 
