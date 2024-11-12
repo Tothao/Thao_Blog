@@ -99,7 +99,7 @@
                     <settings>
                         <required>false</required>
                         <uploaderConfig>
-                            <param xsi:type="url" name="url" path="blog/post/filesubmission"/>
+                            <param xsi:type="url" name="url" path="pub/media/blog/post"/>
                         </uploaderConfig>
                         <previewTmpl>Thao_Blog/image-preview</previewTmpl>
                         <openDialogTitle>Media Gallery</openDialogTitle>

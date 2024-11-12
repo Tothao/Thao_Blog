@@ -8,6 +8,11 @@
                    name="blog.posts"
                 template="Thao_Blog::posts.phtml"/>
         </referenceContainer>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">List Post</argument>
+            </action>
+        </referenceBlock>
     </body>
 </layout>
 

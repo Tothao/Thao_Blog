@@ -5,7 +5,7 @@
  */
 declare(strict_types=1);
 
-namespace Thao\Blog\view\Ui\Component\Listing\Column;
+namespace Thao\Blog\Ui\Component\Listing\Column;
 
 class PostActions extends \Magento\Ui\Component\Listing\Columns\Column
 {

@@ -6,6 +6,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Cms\Model\Template\FilterProvider;
 use Thao\Blog\Model\PostFactory;  // Đảm bảo rằng bạn đã khai báo đúng PostFactory
 use Magento\Framework\App\RequestInterface;
+use Thao\Blog\Block\Posts;
 
 class View extends Template
 {
@@ -18,6 +19,7 @@ class View extends Template
      * @var FilterProvider cai nay khai bao gi a
      */
     protected $_filterProvider;
+    protected $viewPost;
 
     // Constructor để inject dependencies
     public function __construct(
@@ -25,10 +27,12 @@ class View extends Template
         PostFactory $postFactory,  // Inject PostFactory
         FilterProvider $filterProvider,  // Inject FilterProvider
         RequestInterface $request,  // Inject RequestInterface
+        Posts  $viewPost,
         array $data = []
     ) {
         $this->postFactory = $postFactory;
         $this->_filterProvider = $filterProvider;
+        $this->viewPost = $viewPost;
         $this->request = $request;  // Lưu đối tượng Request vào biến
         parent::__construct($context, $data);
     }
@@ -63,4 +67,6 @@ class View extends Template
         $postFactory = $this->postFactory->create()->load($postId);
         return $postFactory;
     }
+
+
 }

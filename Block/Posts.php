@@ -3,22 +3,25 @@
 namespace Thao\Blog\Block;
 
 use Magento\Framework\View\Element\Template;
-use Thao\Blog\Model\PostFactory;
 use Thao\Blog\Model\ResourceModel\Post\CollectionFactory;
-
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Framework\App\ObjectManager;
 class Posts extends Template
 {
 //    minh se dung factory thay vi dung truc tiep cai class collection ma minh da tao.
 //class factory se duoc tu dong sinh ra
     protected $postCollectionFactory;
+    protected $storeManager;
 
     public function __construct(
         Template\Context  $context,
         CollectionFactory $postCollectionFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         array             $data = []
     )
     {
         $this->postCollectionFactory = $postCollectionFactory;
+        $this->storeManager = $storeManager;
         parent::__construct($context, $data);
     }
 
@@ -26,21 +29,36 @@ class Posts extends Template
 
     public function getPosts()
     {
-//        gio moi dung den cai collection day nay
-//        binh thuong new muon khai bao doi tuong trong php thi minh dung new
-
-//        $postCollection = new Collection(); nhu nay dung ko
-//        nhung trong magento thi thuong se ko lam the. ma se khai bao vao contruct va gan vao mot thuoc tinh luon
-//    gio de lay tat da cac bai viet thi se viet ntn
-        $postCollectionFactory = $this->postCollectionFactory->create();
-//        ->addFieldToFilter('is_active', 1);
-//        cai nay bay gio them dieu kien chi lay bai biet duoc bat cai is_active nhe
-//        dung cai addFieldToFilter de loc danh sach
-//        ok roi
-//        luc nao lam xong m mo rong loc them cai dieu kien store_id nua
-        $posts = $postCollectionFactory->getItems();
+//
+        $currentStoreId = $this->storeManager->getStore()->getId();
+        $postCollection = $this->postCollectionFactory->create();
+        $postCollection->addFieldToFilter('is_active', 1);
+        $postCollection->getSelect()->where(
+            'FIND_IN_SET(?, store_id) OR FIND_IN_SET(0, store_id)',
+            $currentStoreId
+        );
+        $posts = $postCollection->getItems();
         return $posts;
 //
+    }
+
+    public function getImageUrl($image)
+    {
+        $mediaUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+        return $mediaUrl.'/blog/post/'.$image;
+    }
+
+    public function getPostTitle()
+    {
+        // Gọi phương thức getPost() để lấy đối tượng bài viết
+        $post = $this->getPost();
+
+        // Kiểm tra xem bài viết có tồn tại không
+        if ($post->getId()) {
+            return $post->getTitle();  // Trả về tiêu đề của bài viết
+        }
+
+        return '';  // Trả về chuỗi rỗng nếu bài viết không tồn tại
     }
 }
 
