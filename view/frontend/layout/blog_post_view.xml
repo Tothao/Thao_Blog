@@ -3,34 +3,27 @@
     <body>
         <!-- Thêm block hiển thị bài viết -->
         <referenceContainer name="content">
-            <referenceBlock name="breadcrumbs">
-                <action method="addCrumb">
-                    <argument name="crumbName" xsi:type="string">Blog</argument>
-                    <argument name="crumbInfo" xsi:type="array">
-                        <item name="title" xsi:type="string" translate="true">Blog</item>
-                        <item name="label" xsi:type="string" translate="true">Blog</item>
-                        <item name="link" xsi:type="string">{{baseUrl}}</item>
-                    </argument>
-                </action>
-                <action method="addCrumb">
-                    <argument name="crumbName" xsi:type="string">Post</argument>
-                    <argument name="crumbInfo" xsi:type="array">
-                        <item name="title" xsi:type="string" translate="true">Post</item>
-                        <item name="label" xsi:type="string" translate="true">Post</item>
-                        <item name="link" xsi:type="string">{{baseUrl}}</item>
-                    </argument>
-                </action>
-                <action method="addCrumb">
-                    <argument name="crumbName" xsi:type="string">Post details</argument>
-                    <argument name="crumbInfo" xsi:type="array">
-                        <item name="title" xsi:type="string" translate="true">Post details</item>
-                        <item name="label" xsi:type="string" translate="true">Post details</item>
-                    </argument>
-                </action>
-            </referenceBlock>
+<!--            <referenceBlock name="breadcrumbs">-->
+<!--                <action method="addCrumb">-->
+<!--                    <argument name="crumbName" xsi:type="string">Blog</argument>-->
+<!--                    <argument name="crumbInfo" xsi:type="array">-->
+<!--                        <item name="title" xsi:type="string" translate="true">Blog</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">Blog</item>-->
+<!--                        <item name="link" xsi:type="string">{{baseUrl}}</item>-->
+<!--                    </argument>-->
+<!--                </action>-->
+<!--                <action method="addCrumb">-->
+<!--                    <argument name="crumbName" xsi:type="string">Post</argument>-->
+<!--                    <argument name="crumbInfo" xsi:type="array">-->
+<!--                        <item name="title" xsi:type="string" translate="true">Post</item>-->
+<!--                        <item name="label" xsi:type="string" translate="true">Post</item>-->
+<!--                        <item name="link" xsi:type="string">{{baseUrl}}</item>-->
+<!--                    </argument>-->
+<!--                </action>-->
+<!--            </referenceBlock>-->
             <block
                 class="Thao\Blog\Block\View"
-                name="blog.posts"/>
+                name="blog.view"/>
 <!--            tuong ung voi cai layout nay. trong layout thi se tao 1 cai block, block nay thi ko dung template.-->
 
         </referenceContainer>

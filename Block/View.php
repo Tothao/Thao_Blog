@@ -67,6 +67,44 @@ class View extends Template
         $postFactory = $this->postFactory->create()->load($postId);
         return $postFactory;
     }
+    public function _prepareLayout()
+    {
+        // Kiểm tra xem block page.main.title có tồn tại không và set tiêu đề
+        if ($this->getLayout()->getBlock('page.main.title')) {
+            $this->getLayout()->getBlock('page.main.title')->setPagetitle($this->getPost()->getTitle());
+        }
+        $breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs');
+        if ($breadcrumbsBlock) {
+
+            $breadcrumbsBlock->addCrumb(
+                'home',
+                [
+                    'label' => __('Home'), //lable on breadCrumbes
+                    'title' => __('Home'),
+                    'link' => $this->getBaseUrl()
+                ]
+            );
+            $breadcrumbsBlock->addCrumb(
+                'blog',
+                [
+                    'label' => __('blog'),
+                    'title' => __('blog'),
+                    'link' => $this->getUrl('blog')
+                ]
+            );
+            $breadcrumbsBlock->addCrumb(
+                'post-view',
+                [
+                    'label' => __($this->getPost()->getTitle()),
+                    'title' => __($this->getPost()->getTitle()),
+                    'link' => ''
+                ]
+            );
+        }
+
+        return parent::_prepareLayout();
+
+    }
 
 
 }

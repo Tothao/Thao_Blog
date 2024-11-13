@@ -47,18 +47,5 @@ class Posts extends Template
         $mediaUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
         return $mediaUrl.'/blog/post/'.$image;
     }
-
-    public function getPostTitle()
-    {
-        // Gọi phương thức getPost() để lấy đối tượng bài viết
-        $post = $this->getPost();
-
-        // Kiểm tra xem bài viết có tồn tại không
-        if ($post->getId()) {
-            return $post->getTitle();  // Trả về tiêu đề của bài viết
-        }
-
-        return '';  // Trả về chuỗi rỗng nếu bài viết không tồn tại
-    }
-}
+   }
 
