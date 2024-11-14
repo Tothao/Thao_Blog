@@ -99,7 +99,7 @@
                     <settings>
                         <required>false</required>
                         <uploaderConfig>
-                            <param xsi:type="url" name="url" path="pub/media/blog/post"/>
+                            <param xsi:type="url" name="url" path="blog/post/filesubmission"/>
                         </uploaderConfig>
                         <previewTmpl>Thao_Blog/image-preview</previewTmpl>
                         <openDialogTitle>Media Gallery</openDialogTitle>
@@ -118,8 +118,8 @@
             </argument>
             <settings>
                 <dataType>text</dataType>
-                <label translate="true">Url_key</label>
-                <dataScope>Url_key</dataScope>
+                <label translate="true">Url key</label>
+                <dataScope>url_key</dataScope>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">false</rule>
                 </validation>
