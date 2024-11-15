@@ -13,7 +13,7 @@ class Index extends Action
 
     public function __construct(
         Context $context,
-        PageFactory $resultPageFactory
+        PageFactory $resultPageFactory,
     ) {
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
@@ -21,6 +21,10 @@ class Index extends Action
 
     public function execute()
     {
+//        cho nay kun lam giong trong menu. lay config ra. kiem tra neu menu tat thi redirect ve trang 404
+
+        $resultForward = $this->resultForwardFactory->create();
+        return $resultForward->forward('noroute');
         //return ve layout luon
         return $this->resultPageFactory->create();
     }

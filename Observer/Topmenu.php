@@ -5,20 +5,32 @@ namespace Thao\Blog\Observer;
     use Magento\Framework\Data\Tree\Node;
     use Magento\Framework\Event\ObserverInterface;
     use Magento\Framework\UrlInterface;
+    use Thao\Blog\Helper\Data as Helper;
 
     class Topmenu implements ObserverInterface
     {
 
         protected $urlBuilder;
+
+        protected $helper;
         public function __construct(
-            UrlInterface $urlBuilder
-        )
-        {
+            UrlInterface $urlBuilder,
+            Helper $helper
+        ) {
             $this->urlBuilder = $urlBuilder;
+            $this->helper = $helper;
         }
 
         public function execute(EventObserver $observer)
         {
+//            cho nay goi den thang helper de lay config bat/tat nhe
+            $isEnable = $this->helper->isEnableBlog();
+
+            if (!$isEnable) {
+                return;
+            }
+//            gio check neu config ma tat thi return luon
+
             $menu = $observer->getMenu();
             $tree = $menu->getTree();
             $existingMenuItems = $menu->getChildren();
@@ -41,6 +53,9 @@ namespace Thao\Blog\Observer;
 
             return $this;
         }
+
+
+
 //            $parentNode = new Node($data, 'id', $tree, $menu);
 //            $menu->addChild($parentNode);
 //            $subMenuData = [

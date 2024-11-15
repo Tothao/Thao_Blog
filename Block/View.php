@@ -43,6 +43,7 @@ class View extends Template
     {
         $post = $this->getPost();
 
+
 //        kun ko tach ham ra thi viet vao day cung dc.
 //        tach ra cho no gon gang thoi tach ra di ck
         // tren nay thi chi la goi ham do ra de lay thon tin bai viet
@@ -53,7 +54,15 @@ class View extends Template
             return $html;
         }
         return '';  // Trả về chuỗi rỗng nếu không tìm thấy bài viết
+        $html="";
+        $html.='<div style="margin-bottom: 18px">Author:'.$this->getPost()->getAuthor().'</div>';
+        if($post->getId()){
+            $html .= $this->_filterProvider->getPageFilter()->filter($post->getContent());
+            return $html;
+        }
+        return'';
     }
+
 
     /**
      * Lay post theo id get tu param\
