@@ -47,6 +47,10 @@ class Save extends \Magento\Backend\App\Action
             if (isset($data['image']) && is_array($data['image'])) {
                 $data['image'] = $data['image'][0]['name'];
             }
+
+            if (isset($data['store_id']) && is_array($data['store_id'])) {
+                $data['store_id'] = implode(',', $data['store_id']);
+            }
             $model->setData($data);
 
             try {

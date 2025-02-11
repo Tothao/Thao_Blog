@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="page_block_html_topmenu_gethtml_before">
+        <observer name="Meetanshi_CustomerProfile_observer" instance="Thao\Blog\Observer\Topmenu"/>
+    </event>
+    <event name="thao_blog_post_save_after">
+        <observer name="rewrite_url_key_for_blog_post" instance="Thao\Blog\Observer\RewriteUrlObserver" />
+    </event>
+</config>

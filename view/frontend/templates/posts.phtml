@@ -1,0 +1,19 @@
+<?php
+/** @var \Thao\Blog\Block\Posts $block */
+$posts = $block->getPosts();
+// Gọi phương thức getPosts() trong block để lấy dữ liệu bài viết
+?>
+<div class="post-list">
+    <?php foreach ($posts as $post): ?>
+        <div class="post-item">
+            <h3><?php echo $post->getTitle(); ?></h3>
+            <p><?php echo $post->getExcerpt(); ?></p>
+            <a href="<?php echo $block->getUrl('blog/post/view', ['id' => $post->getPostId()]); ?>">Read More</a>
+            <br>
+            <?php if (!empty($post->getImage())): ?>
+                <img width="300px" src="<?php echo $block->getImageUrl($post->getImage()); ?>"
+                     alt="<?php echo $post->getTitle(); ?>" class="post-image">
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</div>

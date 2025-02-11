@@ -95,18 +95,17 @@
 				<resizeDefaultWidth>107</resizeDefaultWidth>
 			</settings>
 		</actionsColumn>
-		<column name="image">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">image</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
+        <column name="image" class="Thao\Blog\Ui\Component\Listing\Column\Thumbnail">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">title</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Thumbnail</item>
+                </item>
+            </argument>
+        </column>
 		<column name="url_key">
 			<settings>
 				<filter>text</filter>
@@ -131,18 +130,13 @@
 				</editor>
 			</settings>
 		</column>
-		<column name="store_id">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">store_id</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
+        <column name="store_id" class="Thao\Blog\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+        </column>
 		<column name="created_at">
 			<settings>
 				<filter>text</filter>

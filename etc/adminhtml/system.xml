@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+<!--        dau tien la cai tab nay tuong ung tao 1 cai menu to nhat trong config-->
+        <tab id="thao" translate="label" sortOrder="100">
+            <label>Thaott</label>
+        </tab>
+<!--        tiep den la cai session nay no tuong ung voi cai menu con ben trong-->
+        <section id="blog" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+
+            <class>separator-top</class>
+            <label>Blog</label>
+            <tab>thao</tab>
+            <resource>Thao_Blog::blog_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="page_title" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Posts page title</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

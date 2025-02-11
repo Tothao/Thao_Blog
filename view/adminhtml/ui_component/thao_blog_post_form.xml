@@ -55,25 +55,35 @@
 				</validation>
 			</settings>
 		</field>
-<!--		<field name="image" formElement="input" sortOrder="20">-->
-<!--			<argument name="data" xsi:type="array">-->
-<!--				<item name="config" xsi:type="array">-->
-<!--					<item name="source" xsi:type="string">post</item>-->
-<!--				</item>-->
-<!--			</argument>-->
-<!--			<settings>-->
-<!--				<dataType>text</dataType>-->
-<!--				<label translate="true">image</label>-->
-<!--				<dataScope>image</dataScope>-->
-<!--				<validation>-->
-<!--					<rule name="required-entry" xsi:type="boolean">false</rule>-->
-<!--				</validation>-->
-<!--			</settings>-->
-<!--		</field>-->
+        <field name="is_active" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">post</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable post</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
         <field formElement="imageUploader" name="image" sortOrder="30">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">image</item>
+                    <item name="source" xsi:type="string">post</item>
                 </item>
             </argument>
             <settings>
@@ -109,7 +119,7 @@
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Url_key</label>
-                <dataScope>Url_key</dataScope>
+                <dataScope>url_key</dataScope>
                 <validation>
                     <rule name="required-entry" xsi:type="boolean">false</rule>
                 </validation>
@@ -131,20 +141,60 @@
 				</validation>
 			</settings>
 		</field>
-		<field name="store_id" formElement="input" sortOrder="50">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">post</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">store_id</label>
-				<dataScope>store_id</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
-				</validation>
-			</settings>
-		</field>
+
+        <field name="store_id" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <tooltip>
+                    <link>https://docs.magento.com/user-guide/configuration/scope.html</link>
+                    <description>What is this?</description>
+                </tooltip>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
 	</fieldset>
+    <fieldset name="content" sortOrder="10">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Content</label>
+        </settings>
+        <field name="content" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">page</item>
+                </item>
+            </argument>
+            <settings>
+                <additionalClasses>
+                    <class name="admin__field-wide">true</class>
+                </additionalClasses>
+                <label/>
+                <notice translate="true">Note: Keyboard shortcut to activate editor help : Alt + 0 (Windows) or &#x2325;0 (MacOS)</notice>
+                <dataScope>content</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
 </form>

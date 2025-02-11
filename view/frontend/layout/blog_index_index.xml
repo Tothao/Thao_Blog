@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout.xsd">
+    <body>
+        <!-- Thêm block hiển thị bài viết -->
+        <referenceContainer name="content">
+            <block
+                class="Thao\Blog\Block\Posts"
+                   name="blog.posts"
+                template="Thao_Blog::posts.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">List Post</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</layout>
+
