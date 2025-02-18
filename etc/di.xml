@@ -17,7 +17,6 @@
 		</arguments>
 	</type>
 
-
     <!-- Image Uploader -->
     <type name="Thao\Blog\Controller\Adminhtml\Post\Filesubmission">
         <arguments>
