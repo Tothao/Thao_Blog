@@ -1,0 +1,39 @@
+<?php
+/** @var \Thao\Blog\Block\Widget\Posts $block */
+$posts = $block->getPostList();
+?>
+<div><?=$block->getData('posts') ?> </div>
+<div class="post-list">
+    <?php foreach ($posts as $post): ?>
+        <div class="post-item">
+            <h3><?php echo $post->getTitle(); ?></h3>
+            <p><?php echo $post->getExcerpt(); ?></p>
+            <a href="<?php echo $block->getUrl('blog/post/view', ['id' => $post->getPostId()]); ?>">Read More</a>
+            <br>
+            <?php if (!empty($post->getImage())): ?>
+                <img width="300px" src="<?php echo $block->getImageUrl($post->getImage()); ?>"
+                     alt="<?php echo $post->getTitle(); ?>" class="post-image">
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</div>
+<style>
+    .post-list {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 20px;
+    }
+
+    .post-item {
+        flex: 0 0 auto;
+        width: 300px;
+        text-align: center;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+</style>
+

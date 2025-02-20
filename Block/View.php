@@ -15,7 +15,7 @@ class View extends Template
     protected $postFactory;
 
     /**
-     * @var FilterProvider cai nay khai bao gi a
+     * @var FilterProvider
      */
     protected $_filterProvider;
 
