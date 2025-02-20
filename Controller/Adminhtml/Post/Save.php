@@ -8,11 +8,20 @@ declare(strict_types=1);
 namespace Thao\Blog\Controller\Adminhtml\Post;
 
 use Magento\Framework\Exception\LocalizedException;
+use Thao\Blog\Model\PostFactory;
 
 class Save extends \Magento\Backend\App\Action
 {
-
+    /**
+     * @var \Magento\Framework\App\Request\DataPersistorInterface
+     */
     protected $dataPersistor;
+
+    /**
+     * @var PostFactory
+     */
+    protected $postFactory;
+
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -20,9 +29,11 @@ class Save extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
+        PostFactory $postFactory
     ) {
         $this->dataPersistor = $dataPersistor;
+        $this->postFactory = $postFactory;
         parent::__construct($context);
     }
 
@@ -39,13 +50,15 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             $id = $this->getRequest()->getParam('post_id');
 
-            $model = $this->_objectManager->create(\Thao\Blog\Model\Post::class)->load($id);
+            $model = $this->postFactory->create();
+            $model->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Post no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
             if (isset($data['image']) && is_array($data['image'])) {
-                $data['image'] = $data['image'][0]['name'];
+                $firstItem = reset($data['image']);
+                $data['image'] = $firstItem['name'];
             }
 
             if (isset($data['store_id']) && is_array($data['store_id'])) {

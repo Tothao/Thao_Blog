@@ -4,9 +4,8 @@ namespace Thao\Blog\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Cms\Model\Template\FilterProvider;
-use Thao\Blog\Model\PostFactory;  // Đảm bảo rằng bạn đã khai báo đúng PostFactory
+use Thao\Blog\Model\PostFactory;
 use Magento\Framework\App\RequestInterface;
-use Thao\Blog\Block\Posts;
 
 class View extends Template
 {
@@ -19,41 +18,40 @@ class View extends Template
      * @var FilterProvider cai nay khai bao gi a
      */
     protected $_filterProvider;
-    protected $viewPost;
 
-    // Constructor để inject dependencies
+
+    /**
+     * @param Template\Context $context
+     * @param PostFactory $postFactory
+     * @param FilterProvider $filterProvider
+     * @param RequestInterface $request
+     * @param array $data
+     */
     public function __construct(
         Template\Context $context,
-        PostFactory $postFactory,  // Inject PostFactory
-        FilterProvider $filterProvider,  // Inject FilterProvider
-        RequestInterface $request,  // Inject RequestInterface
-        Posts  $viewPost,
+        PostFactory $postFactory,
+        FilterProvider $filterProvider,
+        RequestInterface $request,
         array $data = []
     ) {
         $this->postFactory = $postFactory;
         $this->_filterProvider = $filterProvider;
-        $this->viewPost = $viewPost;
-        $this->request = $request;  // Lưu đối tượng Request vào biến
+        $this->request = $request;
         parent::__construct($context, $data);
     }
 
-
-    // Override phương thức _toHtml() để đảm bảo nội dung bài viết được trả về
+    /**
+     * @return string
+     * @throws \Exception
+     */
     protected function _toHtml()
     {
         $post = $this->getPost();
-
-
-//        kun ko tach ham ra thi viet vao day cung dc.
-//        tach ra cho no gon gang thoi tach ra di ck
-        // tren nay thi chi la goi ham do ra de lay thon tin bai viet
-        if ($post->getId()) {  // Kiểm tra nếu bài viết tồn tại
-            // Lọc nội dung bài viết thông qua FilterProvider
+        if ($post->getId()) {
             $html = $this->_filterProvider->getPageFilter()->filter($post->getContent());
-
             return $html;
         }
-        return '';  // Trả về chuỗi rỗng nếu không tìm thấy bài viết
+        return '';
         $html="";
         $html.='<div style="margin-bottom: 18px">Author:'.$this->getPost()->getAuthor().'</div>';
         if($post->getId()){
@@ -76,15 +74,18 @@ class View extends Template
         $postFactory = $this->postFactory->create()->load($postId);
         return $postFactory;
     }
+
+    /**
+     * @return View
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
     public function _prepareLayout()
     {
-        // Kiểm tra xem block page.main.title có tồn tại không và set tiêu đề
         if ($this->getLayout()->getBlock('page.main.title')) {
             $this->getLayout()->getBlock('page.main.title')->setPagetitle($this->getPost()->getTitle());
         }
         $breadcrumbsBlock = $this->getLayout()->getBlock('breadcrumbs');
         if ($breadcrumbsBlock) {
-
             $breadcrumbsBlock->addCrumb(
                 'home',
                 [
