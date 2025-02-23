@@ -17,6 +17,10 @@ class Posts extends Template
      */
     protected $storeManager;
 
+    protected $searchCriteriaBuilder;
+
+    protected $postRepository;
+
     /**
      * @param Template\Context $context
      * @param CollectionFactory $postCollectionFactory
@@ -27,10 +31,14 @@ class Posts extends Template
         Template\Context  $context,
         CollectionFactory $postCollectionFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
+        \Thao\Blog\Api\PostRepositoryInterface $postRepository,
         array             $data = []
     ) {
         $this->postCollectionFactory = $postCollectionFactory;
         $this->storeManager = $storeManager;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->postRepository = $postRepository;
         parent::__construct($context, $data);
     }
 
@@ -42,13 +50,25 @@ class Posts extends Template
     {
 
         $currentStoreId = $this->storeManager->getStore()->getId();
-        $postCollection = $this->postCollectionFactory->create();
-        $postCollection->addFieldToFilter('is_active', 1);
-        $postCollection->getSelect()->where(
-            'FIND_IN_SET(?, store_id) OR FIND_IN_SET(0, store_id)',
-            $currentStoreId
-        );
-        $posts = $postCollection->getItems();
+//        $postCollection = $this->postCollectionFactory->create();
+//        $postCollection->addFieldToFilter('is_active', 1);
+//        $postCollection->getSelect()->where(
+//            'FIND_IN_SET(?, store_id) OR FIND_IN_SET(0, store_id)',
+//            $currentStoreId
+//        );
+
+        $searchCriteria = $this->searchCriteriaBuilder
+            ->addFilter('is_active', 1)
+            ->addFilter(
+                'store_id',
+                [$currentStoreId, 0], // Lọc theo store_id hoặc 0
+                'in'
+            )
+            ->create();
+
+        $searchResults = $this->postRepository->getList($searchCriteria);
+
+        $posts = $searchResults->getItems();
         return $posts;
 
     }

@@ -19,6 +19,7 @@ class View extends Template
      */
     protected $_filterProvider;
 
+    protected $postRepository;
 
     /**
      * @param Template\Context $context
@@ -32,11 +33,14 @@ class View extends Template
         PostFactory $postFactory,
         FilterProvider $filterProvider,
         RequestInterface $request,
+        \Thao\Blog\Api\PostRepositoryInterface $postRepository,
         array $data = []
     ) {
         $this->postFactory = $postFactory;
         $this->_filterProvider = $filterProvider;
         $this->request = $request;
+        $this->postRepository = $postRepository;
+
         parent::__construct($context, $data);
     }
 
@@ -71,8 +75,10 @@ class View extends Template
     protected function getPost()
     {
         $postId = $this->request->getParam('id');
-        $postFactory = $this->postFactory->create()->load($postId);
-        return $postFactory;
+//        $postFactory = $this->postFactory->create()->load($postId);
+
+        $postRepository = $this->postRepository->get($postId);
+        return $postRepository;
     }
 
     /**
