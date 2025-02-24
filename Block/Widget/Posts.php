@@ -44,6 +44,7 @@ class Posts extends Template implements BlockInterface
      */
     public function getPostList()
     {
+        $this->setStoreManager($this->storeManager);
         $currentStoreId = $this->storeManager->getStore()->getId();
         $postCollection = $this->postCollectionFactory->create();
         $postCollection->addFieldToFilter('is_active', 1);

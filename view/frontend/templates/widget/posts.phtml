@@ -1,8 +1,9 @@
 <?php
 /** @var \Thao\Blog\Block\Widget\Posts $block */
 $posts = $block->getPostList();
+$store = $block->getStoreManager();
 ?>
-<div><?=$block->getData('posts') ?> </div>
+<div><?=$block->getData('title') ?> </div>
 <div class="post-list">
     <?php foreach ($posts as $post): ?>
         <div class="post-item">

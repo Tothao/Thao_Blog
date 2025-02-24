@@ -8,9 +8,9 @@
 		<column name="title" nullable="true" xsi:type="varchar" comment="title" length="255"/>
 		<column name="is_active" nullable="false" xsi:type="smallint" default="1" comment="status" />
 		<column name="image" nullable="true" xsi:type="varchar" comment="image" length="255"/>
-		<column name="url_key" nullable="true" xsi:type="varchar" comment="url_key"  nullable="true" comment="URL Key" length="255"/>
+		<column name="url_key" xsi:type="varchar" comment="URL Key" length="255"/>
         <constraint xsi:type="unique" referenceId="THAO_BLOG_POST_URL_KEY_UNIQUE">
-        <column name="url_key"/>
+            <column name="url_key"/>
         </constraint>
 		<column name="author" nullable="true" xsi:type="varchar" comment="author" length="255"/>
         <column name="content" nullable="true" xsi:type="text" comment="content" />
