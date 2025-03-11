@@ -6,6 +6,7 @@
 declare(strict_types=1);
 
 namespace Thao\Blog\Controller\Adminhtml\Post;
+
 use Thao\Blog\Model\PostFactory;
 
 class Delete extends \Thao\Blog\Controller\Adminhtml\Post

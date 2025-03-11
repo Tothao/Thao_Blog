@@ -2,6 +2,8 @@
 
 namespace Thao\Blog\Controller\Post;
 
+use Magento\Catalog\Model\Product;
+use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
@@ -10,26 +12,44 @@ use Thao\Blog\Model\PostFactory;
 
 class View extends Action
 {
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
+
+    /**
+     * @var PostFactory
+     */
     protected $postFactory;
 
+    /**
+     * @var ForwardFactory
+     */
     protected $resultForwardFactory;
 
+    /**
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param ForwardFactory $forwardFactory
+     * @param PostFactory $postFactory
+     * @param ProductFactory $productFactory
+     */
     public function __construct(
         Context     $context,
         PageFactory $resultPageFactory,
         ForwardFactory $forwardFactory,
-        PostFactory $postFactory
-
-
-    )
-    {
+        PostFactory $postFactory,
+        ProductFactory $productFactory
+    ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->resultForwardFactory = $forwardFactory;
         $this->postFactory = $postFactory;
         parent::__construct($context);
     }
 
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\Result\Forward|\Magento\Framework\Controller\ResultInterface|\Magento\Framework\View\Result\Page
+     */
     public function execute()
     {
         $request = $this->getRequest();
@@ -37,14 +57,10 @@ class View extends Action
         $post = $this->postFactory->create()->load($postId);
 
         if (!$post->getId()) {
-//            neu ko thi cho no redirect ve trang 404
             $resultForward = $this->resultForwardFactory->create();
             return $resultForward->forward('noroute');
         }
-//        doan tren nay cung la lay thong tin bai viet tu id, de kiem tra bai viet co ton tai k
 
-//    day nhe. controller --> layout
-//        trong blok de lay bai viet theo id kun lam tuong tu
-        return $this->resultPageFactory->create(); // day cai nay no se return ve layout
+        return $this->resultPageFactory->create();
     }
 }

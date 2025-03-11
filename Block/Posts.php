@@ -50,18 +50,12 @@ class Posts extends Template
     {
 
         $currentStoreId = $this->storeManager->getStore()->getId();
-//        $postCollection = $this->postCollectionFactory->create();
-//        $postCollection->addFieldToFilter('is_active', 1);
-//        $postCollection->getSelect()->where(
-//            'FIND_IN_SET(?, store_id) OR FIND_IN_SET(0, store_id)',
-//            $currentStoreId
-//        );
 
         $searchCriteria = $this->searchCriteriaBuilder
             ->addFilter('is_active', 1)
             ->addFilter(
                 'store_id',
-                [$currentStoreId, 0], // Lọc theo store_id hoặc 0
+                [$currentStoreId, 0],
                 'in'
             )
             ->create();

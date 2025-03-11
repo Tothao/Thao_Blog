@@ -20,13 +20,22 @@ class DataProvider extends AbstractDataProvider
      * @var DataPersistorInterface
      */
     protected $dataPersistor;
+
+    /**
+     * @var UrlInterface
+     */
     protected $url;
+
+    /**
+     * @var StoreManagerInterface
+     */
     protected $storeManager;
 
     /**
      * @var array
      */
     protected $loadedData;
+
     /**
      * @inheritDoc
      */
@@ -52,8 +61,7 @@ class DataProvider extends AbstractDataProvider
         StoreManagerInterface $storeManager,
         array $meta = [],
         array $data = []
-    )
-    {
+    ) {
         $this->collection = $collectionFactory->create();
         $this->dataPersistor = $dataPersistor;
         $this->url = $url;
@@ -93,6 +101,10 @@ class DataProvider extends AbstractDataProvider
         return $this->loadedData;
     }
 
+    /**
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
     protected function getMediaUrl()
     {
         return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'blog/post/';

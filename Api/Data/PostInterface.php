@@ -1,15 +1,11 @@
 <?php
-/**
- * Copyright ©  All rights reserved.
- * See COPYING.txt for license details.
- */
+
 declare(strict_types=1);
 
 namespace Thao\Blog\Api\Data;
 
 interface PostInterface
 {
-
     const AUTHOR = 'author';
     const STORE_ID = 'store_id';
     const POST_ID = 'post_id';
