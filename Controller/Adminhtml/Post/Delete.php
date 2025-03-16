@@ -7,8 +7,29 @@ declare(strict_types=1);
 
 namespace Thao\Blog\Controller\Adminhtml\Post;
 
+use Thao\Blog\Model\PostFactory;
+
 class Delete extends \Thao\Blog\Controller\Adminhtml\Post
 {
+    /**
+     * @var PostFactory
+     */
+    protected $postFactory;
+
+    /**
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
+     * @param PostFactory $postFactory
+     */
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        PostFactory $postFactory
+    )
+    {
+        $this->postFactory = $postFactory;
+        parent::__construct($context, $coreRegistry);
+    }
 
     /**
      * Delete action
@@ -24,7 +45,7 @@ class Delete extends \Thao\Blog\Controller\Adminhtml\Post
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\Thao\Blog\Model\Post::class);
+                $model = $this->postFactory->create();
                 $model->load($id);
                 $model->delete();
                 // display success message

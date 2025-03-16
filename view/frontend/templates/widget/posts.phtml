@@ -1,7 +1,9 @@
 <?php
-/** @var \Thao\Blog\Block\Posts $block */
-$posts = $block->getPosts();
+/** @var \Thao\Blog\Block\Widget\Posts $block */
+$posts = $block->getPostList();
+$store = $block->getStoreManager();
 ?>
+<div><?=$block->getData('title') ?> </div>
 <div class="post-list">
     <?php foreach ($posts as $post): ?>
         <div class="post-item">
@@ -16,3 +18,23 @@ $posts = $block->getPosts();
         </div>
     <?php endforeach; ?>
 </div>
+<style>
+    .post-list {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        gap: 20px;
+    }
+
+    .post-item {
+        flex: 0 0 auto;
+        width: 300px;
+        text-align: center;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+</style>
+

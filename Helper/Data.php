@@ -1,17 +1,32 @@
 <?php
+
 namespace Thao\Blog\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Store\Model\ScopeInterface;
+
 class Data extends AbstractHelper
 {
+    /**
+     * @return mixed
+     */
     public function isEnableBlog()
     {
-        $valueFromConfig = $this->scopeConfig->getValue(
+        $isEnableBlog = $this->scopeConfig->getValue(
             'blog/general/enable',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+            ScopeInterface::SCOPE_STORE,
         );
-
-        return $valueFromConfig;
+        return $isEnableBlog;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getPageTitle()
+    {
+         return $this->scopeConfig->getValue(
+            'blog/general/page_title',
+            ScopeInterface::SCOPE_STORE,
+        );
+    }
 }
