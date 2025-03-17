@@ -56,4 +56,15 @@ class Posts extends Template implements BlockInterface
         return  $postCollection->getItems();
     }
 
+
+    /**
+     * @param $image
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getImageUrl($image)
+    {
+        $mediaUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+        return $mediaUrl.'/blog/post/'.$image;
+    }
 }

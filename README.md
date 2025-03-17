@@ -1,51 +1,41 @@
-# Mage2 Module Thao Blog
+# Thao_Blog Module for Magento 2
 
-    ``thao/module-blog``
+## Introduction
+`Thao_Blog` is a module for Magento 2 that allows you to easily create and manage a blog on your website. This module provides features such as:
+- Managing blog posts (create, edit, delete)
+- Displaying blog posts on the frontend
+- SEO-friendly URLs
 
- - [Main Functionalities](#markdown-header-main-functionalities)
- - [Installation](#markdown-header-installation)
- - [Configuration](#markdown-header-configuration)
- - [Specifications](#markdown-header-specifications)
- - [Attributes](#markdown-header-attributes)
-
-
-## Main Functionalities
-module blog
+## System Requirements
+- Magento 2.4+
+- PHP 7.4 or higher
 
 ## Installation
-\* = in production please use the `--keep-generated` option
+You can install the `Thao_Blog` module in two ways: using Composer or manually via the `app/code` directory.
 
-### Type 1: Zip file
+### Method 1: Install via Composer
+```sh
+composer config repositories.thao-blog git https://github.com/Tothao/Thao_Blog.git
+composer require thao/module-blog:dev-master
+php bin/magento setup:upgrade
+php bin/magento setup:di:compile
+php bin/magento cache:flush
+```
 
- - Unzip the zip file in `app/code/Thao`
- - Enable the module by running `php bin/magento module:enable Thao_Blog`
- - Apply database updates by running `php bin/magento setup:upgrade`\*
- - Flush the cache by running `php bin/magento cache:flush`
-
-### Type 2: Composer
-
- - Make the module available in a composer repository for example:
-    - private repository `repo.magento.com`
-    - public repository `packagist.org`
-    - public github repository as vcs
- - Add the composer repository to the configuration by running `composer config repositories.repo.magento.com composer https://repo.magento.com/`
- - Install the module composer by running `composer require thao/module-blog`
- - enable the module by running `php bin/magento module:enable Thao_Blog`
- - apply database updates by running `php bin/magento setup:upgrade`\*
- - Flush the cache by running `php bin/magento cache:flush`
-
+### Method 2: Manual Installation
+1. Download or clone the repository:
+   ```sh
+   git clone https://github.com/Tothao/Thao_Blog.git app/code/Thao/Blog
+   ```
+2. Run the following commands to enable the module:
+   ```sh
+   php bin/magento setup:upgrade
+   php bin/magento setup:di:compile
+   php bin/magento cache:flush
+   ```
 
 ## Configuration
+After installation, you can access the Magento admin panel and navigate to **Stores > Configuration > Thaott > Blog** to configure the module settings.
 
-
-
-
-## Specifications
-
-
-
-
-## Attributes
-
-
-
+## Support
+If you encounter any issues, please open an issue on GitHub or contact us.

@@ -1,16 +1,17 @@
 {
     "name": "thao/module-blog",
-    "description": "module blog",
+    "description": "Magento 2 Blog Module",
     "type": "magento2-module",
     "license": "GPL-3.0",
     "authors": [
         {
-            "name": "Mage2Gen",
-            "email": "info@mage2gen.com"
+            "name": "Thao",
+            "email": "tothao2502@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "thao/module-base": "dev-master"
+    },
     "autoload": {
         "files": [
             "registration.php"
@@ -18,5 +19,13 @@
         "psr-4": {
             "Thao\\Blog\\": ""
         }
-    }
+    },
+    "repositories": {
+        "thao/module-base": {
+            "type": "git",
+            "url": "git@github.com:Tothao/Thao_Base.git"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
