@@ -23,7 +23,7 @@
     "repositories": {
         "thao/module-base": {
             "type": "git",
-            "url": "git@github.com:Tothao/Thao_Base.git"
+            "url": "https://github.com/Tothao/Thao_Base.git"
         }
     },
     "minimum-stability": "dev",
