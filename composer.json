@@ -9,9 +9,6 @@
             "email": "tothao2502@gmail.com"
         }
     ],
-    "require": {
-        "thao/module-base": "dev-master"
-    },
     "autoload": {
         "files": [
             "registration.php"
@@ -21,11 +18,23 @@
         }
     },
     "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
         "thao/module-base": {
             "type": "git",
             "url": "https://github.com/Tothao/Thao_Base.git"
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require": {
+        "thao/module-base": "dev-master"
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/composer-dependency-version-audit-plugin": true
+        }
+    }
 }
