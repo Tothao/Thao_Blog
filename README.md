@@ -34,8 +34,45 @@ php bin/magento cache:flush
    php bin/magento cache:flush
    ```
 
-## Configuration
-After installation, you can access the Magento admin panel and navigate to **Stores > Configuration > Thaott > Blog** to configure the module settings.
+## Configuration Guide
+
+To configure the module, go to **Admin > Configuration > Thaott > Blog > General Configuration**.
+
+### Available Settings:
+
+- **Module Enable:** Enable/disable the module.
+- **Posts Page Title:** Set the title for the blog post listing page.
+
+### Configuration Screenshots
+
+![General Configuration](docs/images/general_configuration.png)
+
+### Adding a New Blog Post
+To create a new blog post, follow these steps:
+
+1. Go to **Admin > Thao > Post**.
+2. Click **Add New Post**.
+3. Enter the post title, content, and other relevant details.
+4. Click **Save** to publish the post.
+
+![Add new](docs/images/add-new.png)
+
+![Grid](docs/images/grid.png)
+
+### Adding Blog Posts Widget
+You can add the **Blog Posts** widget to the homepage or any other page by following these steps:
+
+1. Go to **Admin > Content > Pages**.
+2. Select the page where you want to add the widget (e.g., Home Page).
+3. Click **Edit** and go to the **Content** section.
+4. Click **Insert Widget...**.
+5. Select **Blog Post** from the widget list.
+6. Configure the following options:
+    - **Custom Posts Title:** Set the title for the blog post list.
+    - **post_max_number:** Define the maximum number of blog posts to display.
+7. Click **Save** and refresh the cache to apply the changes.
+
+![Widget](docs/images/widget.png)
 
 ## Support
 If you encounter any issues, please open an issue on GitHub or contact us.
